@@ -5,18 +5,80 @@ const Usuario = require('./models/usuarioModel');
 const app = express();
 
 app.use(express.json())
+app.use(express.urlencoded({extended: false}))
 
 //rotas
 app.get('/', (req, res) => {
   res.send("Olá!");
 })
 
-app.post('/usuario', async(req, res) => {
+//buscando todos usarios
+app.get('/usuarios', async(req, res) => {
+  try{
+    const usuarios = await Usuario.find({});
+    res.status(200).json(usuarios);
+
+  } catch (error){
+    console.log(error.message);
+    res.status(500).json({message: error.message});
+
+  }
+})
+
+//buscando usarios por id
+app.get('/usuarios/:id', async(req, res) => {
+  try{
+    const {id} = req.params;
+    const usuario = await Usuario.findById(id);
+    res.status(200).json(usuario);
+
+  } catch (error){
+    console.log(error.message);
+    res.status(500).json({message: error.message});
+
+  }
+})
+
+//inserindo usuario
+app.post('/usuarios', async(req, res) => {
   try{
     const usuario = await Usuario.create(req.body);
     res.status(200).json({usuario});
 
-  } catch{
+  } catch (error){
+    console.log(error.message);
+    res.status(500).json({message: error.message});
+
+  }
+})
+
+//atualizando usuario
+app.put('/usuarios/:id', async(req, res) => {
+  try {
+    const {id} = req.params;
+    const usuario = await Usuario.findByIdAndUpdate(id, req.body);
+    if(!usuario){
+      return res.status(404).json({message: `não posso encontrar usuario com este ID: ${id}`});
+    }
+    const updateUsuario = await Usuario.findById(id)
+    res.status(200).json(usuario);
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).json({message: error.message});
+
+  }
+})
+
+//deletando usuario
+app.delete('/usuarios/:id', async(req, res) => {
+  try {
+    const {id} = req.params
+    const usuario = await Usuario.findByIdAndDelete(id);
+    if(!usuario){
+      return res.status(404).json({message: `não posso encontrar usuario com este ID: ${id}`});
+    }
+    res.status(200).json(usuario);
+  } catch (error) {
     console.log(error.message);
     res.status(500).json({message: error.message});
 
