@@ -18,6 +18,10 @@ const usuarioSchema = mongoose.Schema(
             type: String,
             require: [true, "Insira um senha"]
         },
+        confirmasenha: {
+            type: String,
+            require: [true, "Insira um email"]
+        },
     
     }
 );

@@ -41,9 +41,32 @@ app.get('/usuarios/:id', async(req, res) => {
 
 //inserindo usuario
 app.post('/usuarios', async(req, res) => {
+  const {nome, sobrenome, email, senha, confirmasenha} = req.body;
+
+  if(!nome){
+    return res.status(422).json({error: '`Nome é obrigatório!`'});
+  }
+  if(!email){
+    return res.status(422).json({error: '`Sobrenome é obrigatório!`'});
+  }
+  if(!senha){
+    return res.status(422).json({error: '`senha é obrigatório!`'});
+  }
+  if(senha !== confirmasenha){
+    return res.status(422).json({error: '`senhna não é igual!`'});
+  }
+
+  const usuario = {
+    nome, 
+    sobrenome, 
+    email, 
+    senha,
+    confirmasenha
+  }
+
   try{
-    const usuario = await Usuario.create(req.body);
-    res.status(200).json({usuario});
+    await Usuario.create(usuario);
+    res.status(200).json(`Usuario inserido com sucesso!`);
 
   } catch (error){
     console.log(error.message);
