@@ -1,30 +1,26 @@
 const mongoose = require('mongoose');
 
-const usuarioSchema = mongoose.Schema(
+const unidadeSchema = mongoose.Schema(
     {
-        nome: {
+        id: {
             type: String,
             require: [true, "Insira um nome"]
         },
-        sobrenome: {
+        razaoSocial: {
             type: String,
             require: [true, "Insira um sobrenome"]
         },
-        email: {
+        cidade: {
             type: String,
             require: [true, "Insira um email"]
         },
-        senha: {
+        estado: {
             type: String,
             require: [true, "Insira um senha"]
-        },
-        confirmasenha: {
-            type: String,
-            require: [true, "Insira um email"]
         }
     }
-);
+)
 
-const Usuario = mongoose.model('Usuario', usuarioSchema);
+const Usuario = mongoose.model('Unidade', unidadeSchema);
 
-module.exports = Usuario;
+module.exports = Unidade;
