@@ -1,6 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
+const installRoute = require('./routes/installRoute');
 const usuarioRoute = require('./routes/usuarioRoute');
 
 const app = express();
@@ -16,7 +17,8 @@ app.get('/', (req, res) => {
   res.send("IAE, BLZ?");
 })
 
-//Usuario
+//Rotas
+app.use('/install', installRoute);
 app.use('/usuarios', usuarioRoute);
 
 //Conexão ao Banco
