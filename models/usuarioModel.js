@@ -1,4 +1,4 @@
-const mongoose = require ('mongoose');
+const mongoose = require('mongoose');
 
 const usuarioSchema = mongoose.Schema(
     {
@@ -22,7 +22,7 @@ const usuarioSchema = mongoose.Schema(
             type: String,
             require: [true, "Insira um email"]
         },
-    
+
     }
 );
 
