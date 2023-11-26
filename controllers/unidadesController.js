@@ -2,9 +2,14 @@ const Unidade = require('../models/unidadeModel');
 
 const getUnidades = async (req, res) => {
     try {
-        const unidade = await Unidade.find({})
+        const {pagina = 1, limite = 5} = req.query;
+        const totalRegistro = Unidade.countDocuments({});
+        
+        const unidade = await Unidade.find({}).skip((pagina-1) * limite).limit(limite);
+        offset: Number((pagina*limite)-limite);
+        limit: totalRegistro;
         res.status(200).json(unidade);
-
+        
     } catch (error) {
         console.log(error.message);
         res.status(500).json({ message: error.message });

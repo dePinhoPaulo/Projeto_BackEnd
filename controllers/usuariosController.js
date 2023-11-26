@@ -3,7 +3,12 @@ const Usuario = require('../models/usuarioModel');
 //Buscando todos usuarios
 const getUsuarios = async (req, res) => {
     try {
-        const usuarios = await Usuario.find({});
+        const {pagina = 1, limite = 5} = req.query;
+        const totalRegistro = Usuario.countDocuments({});
+
+        const usuarios = await Usuario.find({}).skip((pagina-1) * limite).limit(limite);
+        offset: Number((pagina*limite)-limite);
+        limit: totalRegistro;
         res.status(200).json(usuarios);
 
     } catch (error) {
