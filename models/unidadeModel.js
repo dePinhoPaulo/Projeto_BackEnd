@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const unidadeSchema = mongoose.Schema(
     {
-        id: {
+        idUnidade: {
             type: String,
             require: [true, "Insira um nome"]
         },
@@ -21,6 +21,6 @@ const unidadeSchema = mongoose.Schema(
     }
 )
 
-const Usuario = mongoose.model('Unidade', unidadeSchema);
+const Unidade = mongoose.model('Unidade', unidadeSchema);
 
 module.exports = Unidade;

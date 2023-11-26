@@ -3,6 +3,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const installRoute = require('./routes/installRoute');
 const usuarioRoute = require('./routes/usuarioRoute');
+const unidadeRoute = require('./routes/unidadeRoute');
 
 const app = express();
 
@@ -20,6 +21,7 @@ app.get('/', (req, res) => {
 //Rotas
 app.use('/install', installRoute);
 app.use('/usuarios', usuarioRoute);
+app.use('/unidades', unidadeRoute);
 
 //Conexão ao Banco
 mongoose.connect(`${LINK}`)
