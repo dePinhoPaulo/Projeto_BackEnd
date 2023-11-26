@@ -1,6 +1,5 @@
 const Usuario = require('../models/usuarioModel');
 
-
 //Buscando todos usuarios
 const getUsuarios = async (req, res) => {
     try {
