@@ -17,7 +17,7 @@ const getUnidades = async (req, res) => {
     }
 }
 
-const setUnidadesById = async (req, res) => {
+const getUnidadesById = async (req, res) => {
     try {
         const { id } = req.params;
         const unidade = await Unidade.findById(id);
@@ -98,7 +98,7 @@ const deleteUnidades = async(req, res) => {
 
 module.exports = {
     getUnidades,
-    setUnidadesById,
+    getUnidadesById,
     postUnidades,
     putUnidades,
     deleteUnidades

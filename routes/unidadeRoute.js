@@ -1,5 +1,5 @@
 const express = require('express');
-const { getUnidades, setUnidadesById, postUnidades, putUnidades, deleteUnidades} = require('../controllers/unidadesController');
+const { getUnidades, getUnidadesById, postUnidades, putUnidades, deleteUnidades} = require('../controllers/unidadesController');
 
 const router = express.Router();
 
@@ -7,7 +7,7 @@ const router = express.Router();
 router.get('/', getUnidades)
 
 //Buscando unidades por Id
-router.get('/:id', setUnidadesById)
+router.get('/:id', getUnidadesById)
 
 //inserindo unidade
 router.post('/', postUnidades)
