@@ -4,19 +4,19 @@ const unidadeSchema = mongoose.Schema(
     {
         idUnidade: {
             type: String,
-            require: [true, "Insira um nome"]
+            require: [true, "Insira um id de Unidade"]
         },
         razaoSocial: {
             type: String,
-            require: [true, "Insira um sobrenome"]
+            require: [true, "Insira uma razaoSocial"]
         },
         cidade: {
             type: String,
-            require: [true, "Insira um email"]
+            require: [true, "Insira uma cidade"]
         },
         estado: {
             type: String,
-            require: [true, "Insira um senha"]
+            require: [true, "Insira um estado"]
         }
     }
 )

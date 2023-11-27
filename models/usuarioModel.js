@@ -16,11 +16,11 @@ const usuarioSchema = mongoose.Schema(
         },
         senha: {
             type: String,
-            require: [true, "Insira um senha"]
+            require: [true, "Insira uma senha"]
         },
         confirmasenha: {
             type: String,
-            require: [true, "Insira um email"]
+            require: [true, "Confirme a senha"]
         }
     }
 );
