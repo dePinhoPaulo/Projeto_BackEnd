@@ -34,4 +34,4 @@ mongoose.connect(`${LINK}`)
     });
   }).catch((error) => {
     console.log(error);
-  })
+})

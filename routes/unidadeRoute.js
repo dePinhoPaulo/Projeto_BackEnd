@@ -4,18 +4,18 @@ const { getUnidades, getUnidadesById, postUnidades, putUnidades, deleteUnidades}
 const router = express.Router();
 
 //buscando
-router.get('/', getUnidades)
+router.get('/', getUnidades);
 
 //Buscando unidades por Id
-router.get('/:id', getUnidadesById)
+router.get('/:id', getUnidadesById);
 
 //inserindo unidade
-router.post('/', postUnidades)
+router.post('/', postUnidades);
 
-//Atualizando usuarios
-router.put('/:id', putUnidades)
+//Atualizando unidade
+router.put('/:id', putUnidades);
 
 //Deletando unidades
-router.delete('/:id', deleteUnidades)
+router.delete('/:id', deleteUnidades);
 
 module.exports = router;

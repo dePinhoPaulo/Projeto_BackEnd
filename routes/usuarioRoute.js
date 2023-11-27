@@ -5,18 +5,18 @@ const { getUsuarios, getUsuariosById, postUsuarios, putUsuarios, deleteUsuarios 
 const router = express.Router();
 
 //Buscando todos usarios
-router.get('/', getUsuarios)
+router.get('/', getUsuarios);
 
 //Buscando usarios por id
-router.get('/:id', getUsuariosById)
+router.get('/:id', getUsuariosById);
 
 //Inserindo usuario
-router.post('/', postUsuarios)
+router.post('/', postUsuarios);
 
 //Atualizando usuario
-router.put('/:id', putUsuarios)
+router.put('/:id', putUsuarios);
 
 //Deletando usuario
-router.delete('/:id', deleteUsuarios)
+router.delete('/:id', deleteUsuarios);
 
 module.exports = router;
