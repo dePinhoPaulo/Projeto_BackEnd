@@ -32,7 +32,7 @@ const getColaboradoresById = async (req, res) => {
 
 const postColaboradores = async (req, res) => {
     try {
-        const { idColaborador, idDepartamento, idUnidade, nomeUnidade, nome, idade, cargo, salario} = req.body;
+        const { idColaborador, idDepartamento, idUnidade, nomeDepartamento, nome, idade, cargo, salario} = req.body;
 
         if (!idColaborador) {
             return res.status(422).json({ error: '`idColaborador é obrigatório!`' });
@@ -43,8 +43,8 @@ const postColaboradores = async (req, res) => {
         if (!idUnidade) {
             return res.status(422).json({ error: '`idUnidade é obrigatório!`' });
         }
-        if (!nomeUnidade) {
-            return res.status(422).json({ error: '`nomeUnidade é obrigatório!`' });
+        if (!nomeDepartamento) {
+            return res.status(422).json({ error: '`nomeDepartamento é obrigatório!`' });
         }
         if (!nome) {
             return res.status(422).json({ error: '`nome é obrigatório!`' });
@@ -63,7 +63,7 @@ const postColaboradores = async (req, res) => {
             idColaborador,
             idDepartamento,
             idUnidade,
-            nomeUnidade,
+            nomeDepartamento,
             nome,
             idade,
             cargo,

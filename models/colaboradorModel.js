@@ -14,7 +14,7 @@ const colaboradorSchema = mongoose.Schema(
             type: String,
             require: [true, "Insira um Id de Unidade"]
         },
-        nomeUnidade: {
+        nomeDepartamento: {
             type: String,
             require: [true, "Insira um nome de Unidade"]
         },

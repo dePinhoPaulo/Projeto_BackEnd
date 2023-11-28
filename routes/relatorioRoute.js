@@ -41,7 +41,7 @@ router.get('/dep/idade', async (req, res) => {
 
 router.get('/uni/salario', async (req, res) => {
     try {
-        const relatorio = await Colaborador.aggregate([{$group : {_id:{Unidade:"$idUnidade"}, Total_Salarios:{$sum:"$salario"}}}]);
+        const relatorio = await Colaborador.aggregate([{$group : {_id:"$idUnidade", Total_Salarios:{$sum:"$salario"}}}]);
         res.status(200).json(relatorio);
 
     } catch (error) {
