@@ -19,7 +19,7 @@ const colaboradorSchema = mongoose.Schema(
             require: [true, "Insira um nome para o colaborador"]
         },
         idade: {
-            type: String,
+            type: Number,
             require: [true, "Insira um idade para o colaborador"]
         },
         cargo: {
@@ -27,7 +27,7 @@ const colaboradorSchema = mongoose.Schema(
             require: [true, "Insira um cargo para o colaborador"]
         },
         salario: {
-            type: String,
+            type: Number,
             require: [true, "Insira um salario para o colaborador"]
         }
     }

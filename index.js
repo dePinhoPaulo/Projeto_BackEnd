@@ -6,6 +6,7 @@ const usuarioRoute = require('./routes/usuarioRoute');
 const unidadeRoute = require('./routes/unidadeRoute');
 const departamentoRoute = require('./routes/departamentoRoute');
 const colaboradorRoute = require('./routes/colaboradorRoute');
+const relatorioRoute = require('./routes/relatorioRoute');
 
 const app = express();
 
@@ -26,6 +27,7 @@ app.use('/usuarios', usuarioRoute);
 app.use('/unidades', unidadeRoute);
 app.use('/departamentos', departamentoRoute);
 app.use('/colaboradores', colaboradorRoute);
+app.use('/relatorios', relatorioRoute);
 
 //Conexão ao Banco
 mongoose.connect(`${LINK}`)
