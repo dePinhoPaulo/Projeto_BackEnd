@@ -14,6 +14,10 @@ const colaboradorSchema = mongoose.Schema(
             type: String,
             require: [true, "Insira um Id de Unidade"]
         },
+        nomeUnidade: {
+            type: String,
+            require: [true, "Insira um nome de Unidade"]
+        },
         nome: {
             type: String,
             require: [true, "Insira um nome para o colaborador"]
