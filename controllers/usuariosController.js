@@ -58,6 +58,11 @@ const postUsuarios = async (req, res) => {
             confirmasenha
         }
 
+        const emailExiste = await Usuario.findOne({ email: email});
+        if (emailExiste){
+            return res.status(422).json({ error: '`Utilize outro Email!`' });
+        }
+
         await Usuario.create(usuario);
         res.status(200).json(`Usuario inserido com sucesso!`);
 
