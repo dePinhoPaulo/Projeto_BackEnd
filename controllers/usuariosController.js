@@ -1,6 +1,7 @@
 require('dotenv').config();
 const Usuario = require('../models/usuarioModel');
-const jwt = require('jsonwebtoken')
+const { autentUsuario } = require('../controllers/autenticacaoController');
+const jwt = require('jsonwebtoken');
 
 //Buscando todos usuarios
 const getUsuarios = async (req, res) => {

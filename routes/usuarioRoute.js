@@ -1,11 +1,12 @@
 const express = require('express');
 const Usuario = require('../models/usuarioModel');
 const { getUsuarios, getUsuariosById, postUsuarios, putUsuarios, deleteUsuarios, postLogin } = require('../controllers/usuariosController');
+const { autentUsuario } = require('../controllers/autenticacaoController');
 
 const router = express.Router();
 
 //Buscando todos usarios
-router.get('/', getUsuarios);
+router.get('/', autentUsuario, getUsuarios);
 
 //Buscando usarios por id
 router.get('/:id', getUsuariosById);
