@@ -1,4 +1,6 @@
+require('dotenv').config();
 const Usuario = require('../models/usuarioModel');
+const jwt = require('jsonwebtoken')
 
 //Buscando todos usuarios
 const getUsuarios = async (req, res) => {
@@ -124,7 +126,12 @@ const postLogin = async (req, res) => {
             return res.status(422).json({ error: '`Email ou senha Invalido!`' });
         }
 
-        res.status(200).json({ message: `Usuario Logado no sistema!` });
+        const secrete = process.env.SECRET;
+        const token = jwt.sign({
+            id: usuario._id}, secrete, {expiresIn: 300
+        });
+
+        res.status(200).json({ message: `Usuario Logado no sistema!`, token });
 
     } catch (error) {
         console.log(error.message);
