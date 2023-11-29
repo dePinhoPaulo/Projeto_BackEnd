@@ -107,11 +107,37 @@ const deleteUsuarios = async (req, res) => {
     }
 }
 
+//Logando no sistema
+const postLogin = async (req, res) => {
+    try {
+        const { email, senha } = req.body;
+
+        if (!email) {
+            return res.status(422).json({ error: '`email é obrigatório!`' });
+        }
+        if (!senha) {
+            return res.status(422).json({ error: '`senha é obrigatório!`' });
+        }
+
+        const usuario = await Usuario.findOne({email, senha});
+        if (!usuario){
+            return res.status(422).json({ error: '`Email ou senha Invalido!`' });
+        }
+
+        res.status(200).json({ message: `Usuario Logado no sistema!` });
+
+    } catch (error) {
+        console.log(error.message);
+        res.status(500).json({ message: error.message });
+
+    }
+}
 
 module.exports = {
     getUsuarios,
     getUsuariosById,
     postUsuarios,
     putUsuarios,
-    deleteUsuarios
+    deleteUsuarios,
+    postLogin
 }

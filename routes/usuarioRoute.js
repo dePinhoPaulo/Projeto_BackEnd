@@ -1,6 +1,6 @@
 const express = require('express');
 const Usuario = require('../models/usuarioModel');
-const { getUsuarios, getUsuariosById, postUsuarios, putUsuarios, deleteUsuarios } = require('../controllers/usuariosController');
+const { getUsuarios, getUsuariosById, postUsuarios, putUsuarios, deleteUsuarios, postLogin } = require('../controllers/usuariosController');
 
 const router = express.Router();
 
@@ -18,5 +18,8 @@ router.put('/:id', putUsuarios);
 
 //Deletando usuario
 router.delete('/:id', deleteUsuarios);
+
+//Logando no sistema
+router.post('/:id', postLogin);
 
 module.exports = router;
