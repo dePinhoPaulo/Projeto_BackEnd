@@ -1,6 +1,6 @@
 const express = require('express');
 const Usuario = require('../models/usuarioModel');
-const { getUsuarios, getUsuariosById, postUsuarios, putUsuarios, deleteUsuarios, postLoginUser } = require('../controllers/usuariosController');
+const { getUsuarios, getUsuariosById, postUsuarios, putUsuarios, deleteUsuarios, postLoginUser, postAdmin } = require('../controllers/usuariosController');
 const { autentUsuario} = require('../controllers/autenticacaoController');
 
 const router = express.Router();
@@ -22,5 +22,8 @@ router.delete('/:id', deleteUsuarios);
 
 //Logando no sistema
 router.post('/login', postLoginUser);
+
+//Inserindo Admin
+router.post('/admin', autentUsuario, postAdmin);
 
 module.exports = router;

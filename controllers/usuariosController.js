@@ -5,7 +5,6 @@ const jwt = require('jsonwebtoken');
 //Buscando todos usuarios
 const getUsuarios = async (req, res) => {
     try {
-        console.log(req);
         if(!req.admin){
             return res.status(400).json({ message: "Voce não é Admin!" });
         }
@@ -58,12 +57,7 @@ const postUsuarios = async (req, res) => {
         }
 
         const usuario = {
-            nome,
-            sobrenome,
-            email,
-            senha,
-            confirmasenha,
-            admin: false
+            nome, sobrenome, email, senha, confirmasenha, admin: false
         }
 
         const emailExiste = await Usuario.findOne({ email: email});
@@ -114,6 +108,7 @@ const deleteUsuarios = async (req, res) => {
 
     }
 }
+//---
 
 //Logando no sistema
 const postLoginUser = async (req, res) => {
@@ -146,11 +141,53 @@ const postLoginUser = async (req, res) => {
     }
 }
 
+//Iserindo usuarios
+const postAdmin = async (req, res) => {
+    try {
+        if(!req.admin){
+            return res.status(400).json({ message: "Voce não é Admin!" });
+        }
+        
+        const { nome, sobrenome, email, senha, confirmasenha } = req.body;
+
+        if (!nome) {
+            return res.status(422).json({ error: '`Nome é obrigatório!`' });
+        }
+        if (!email) {
+            return res.status(422).json({ error: '`Sobrenome é obrigatório!`' });
+        }
+        if (!senha) {
+            return res.status(422).json({ error: '`senha é obrigatório!`' });
+        }
+        if (senha !== confirmasenha) {
+            return res.status(422).json({ error: '`senhna não é igual!`' });
+        }
+
+        const usuario = {
+            nome, sobrenome, email, senha, confirmasenha, admin: true
+        }
+
+        const emailExiste = await Usuario.findOne({ email: email});
+        if (emailExiste){
+            return res.status(422).json({ error: '`Utilize outro Email!`' });
+        }
+
+        await Usuario.create(usuario);
+        res.status(200).json(`Usuario inserido com sucesso!`);
+
+    } catch (error) {
+        console.log(error.message);
+        res.status(500).json({ message: error.message });
+
+    }
+}
+
 module.exports = {
     getUsuarios,
     getUsuariosById,
     postUsuarios,
     putUsuarios,
     deleteUsuarios,
-    postLoginUser
+    postLoginUser,
+    postAdmin
 }
