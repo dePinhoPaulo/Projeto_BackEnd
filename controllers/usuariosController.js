@@ -6,7 +6,7 @@ const jwt = require('jsonwebtoken');
 const getUsuarios = async (req, res) => {
     try {
         if(!req.admin){
-            return res.status(400).json({ message: "Voce não é Admin!" });
+            return res.status(401).json({ message: "Voce não é Admin!" });
         }
         
         const {pagina = 1, limite = 5} = req.query;
@@ -83,7 +83,7 @@ const postUsuarios = async (req, res) => {
 const putUsuarios = async (req, res) => {
     try {
         if(!req.admin){
-            return res.status(400).json({ message: "Voce não é Admin!" });
+            return res.status(401).json({ message: "Voce não é Admin!" });
         }
 
         const { id } = req.params;
@@ -104,7 +104,7 @@ const putUsuarios = async (req, res) => {
 const deleteUsuarios = async (req, res) => {
     try {
         if(!req.admin){
-            return res.status(400).json({ message: "Voce não é Admin!" });
+            return res.status(401).json({ message: "Voce não é Admin!" });
         }
 
         const { id } = req.params
@@ -160,7 +160,7 @@ const postLoginUser = async (req, res) => {
 const postAdmin = async (req, res) => {
     try {
         if(!req.admin){
-            return res.status(400).json({ message: "Voce não é Admin!" });
+            return res.status(401).json({ message: "Voce não é Admin!" });
         }
 
         const { nome, sobrenome, email, senha, confirmasenha } = req.body;

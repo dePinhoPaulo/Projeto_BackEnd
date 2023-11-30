@@ -1,5 +1,6 @@
 const Departamento = require('../models/departamentoModel');
 
+//busca todos departamentos
 const getDepartamentos = async (req, res) => {
     try {
         const {pagina = 1, limite = 5} = req.query;
@@ -17,6 +18,7 @@ const getDepartamentos = async (req, res) => {
     }
 }
 
+//busca departamentos por id
 const getDepartamentosById = async (req, res) => {
     try {
         const { id } = req.params;
@@ -30,6 +32,7 @@ const getDepartamentosById = async (req, res) => {
     }
 }
 
+//insere departamento
 const postDepartamentos = async (req, res) => {
     try {
         const { idDepartamento, idUnidade, nome, supervisor} = req.body;
@@ -64,6 +67,7 @@ const postDepartamentos = async (req, res) => {
     }
 }
 
+//atualiza departamento
 const putDepartamentos = async(req, res) => {
     try {
         const { id } = req.params;
@@ -80,6 +84,8 @@ const putDepartamentos = async(req, res) => {
     }
 }
 
+
+//deleta departamento
 const deleteDepartamentos = async(req, res) => {
     try {
         const { id } = req.params

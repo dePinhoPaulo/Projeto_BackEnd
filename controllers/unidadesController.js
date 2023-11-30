@@ -1,5 +1,6 @@
 const Unidade = require('../models/unidadeModel');
 
+//buscando todas unidades
 const getUnidades = async (req, res) => {
     try {
         const {pagina = 1, limite = 5} = req.query;
@@ -17,6 +18,7 @@ const getUnidades = async (req, res) => {
     }
 }
 
+//buscando unidades por id
 const getUnidadesById = async (req, res) => {
     try {
         const { id } = req.params;
@@ -30,6 +32,7 @@ const getUnidadesById = async (req, res) => {
     }
 }
 
+//inserindo unidade
 const postUnidades = async (req, res) => {
     try {
         const { idUnidade, razaoSocial, cidade, estado} = req.body;
@@ -64,6 +67,7 @@ const postUnidades = async (req, res) => {
     }
 }
 
+//atualizando unidade
 const putUnidades = async(req, res) => {
     try {
         const { id } = req.params;
@@ -80,6 +84,7 @@ const putUnidades = async(req, res) => {
     }
 }
 
+//deletando unidade
 const deleteUnidades = async(req, res) => {
     try {
         const { id } = req.params

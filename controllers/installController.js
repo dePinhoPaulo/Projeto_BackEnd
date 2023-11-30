@@ -3,7 +3,7 @@ const Unidade = require('../models/unidadeModel');
 const Departamento = require('../models/departamentoModel');
 const Colaborador = require('../models/colaboradorModel');
 
-
+//insere dados no banco
 const postInstall = async (req, res) => {
     try {
         const usuario = [{

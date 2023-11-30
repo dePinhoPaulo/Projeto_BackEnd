@@ -1,5 +1,6 @@
 const Colaborador = require('../models/colaboradorModel');
 
+//Busca todos colaboradores
 const getColaboradores = async (req, res) => {
     try {
         const {pagina = 1, limite = 5} = req.query;
@@ -17,6 +18,7 @@ const getColaboradores = async (req, res) => {
     }
 }
 
+//busca colaborador por Id
 const getColaboradoresById = async (req, res) => {
     try {
         const { id } = req.params;
@@ -30,6 +32,7 @@ const getColaboradoresById = async (req, res) => {
     }
 }
 
+//Insere colaborador
 const postColaboradores = async (req, res) => {
     try {
         const { idColaborador, idDepartamento, idUnidade, nomeDepartamento, nome, idade, cargo, salario} = req.body;
@@ -80,6 +83,7 @@ const postColaboradores = async (req, res) => {
     }
 }
 
+//atualiza colaborador
 const putColaboradores = async(req, res) => {
     try {
         const { id } = req.params;
@@ -96,6 +100,7 @@ const putColaboradores = async(req, res) => {
     }
 }
 
+//delleta colaborador
 const deleteColaboradores = async(req, res) => {
     try {
         const { id } = req.params
