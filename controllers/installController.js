@@ -7,15 +7,15 @@ const Colaborador = require('../models/colaboradorModel');
 const postInstall = async (req, res) => {
     try {
         const usuario = [{
-            nome: "ze", sobrenome: "silva", email: "@gmail.com", senha: "123", confirmasenha: "123"
+            nome: "ze", sobrenome: "silva", email: "@admin.com", senha: "123", confirmasenha: "123", admin: true
         }, {
-            nome: "joao", sobrenome: "silveira", email: "@hotmail.com", senha: "123", confirmasenha: "123"
+            nome: "joao", sobrenome: "silveira", email: "@hotmail.com", senha: "123", confirmasenha: "123", admin: false
         }, {
-            nome: "zezo", sobrenome: "machado", email: "@outlook.com", senha: "123", confirmasenha: "123"
+            nome: "zezo", sobrenome: "machado", email: "@outlook.com", senha: "123", confirmasenha: "123", admin: false
         }, {
-            nome: "paulo", sobrenome: "pinho", email: "@yahoo.com", senha: "123", confirmasenha: "123"
+            nome: "paulo", sobrenome: "pinho", email: "@yahoo.com", senha: "123", confirmasenha: "123", admin: false
         }, {
-            nome: "pedro", sobrenome: "ribeirp", email: "@gmail.com", senha: "123", confirmasenha: "123"
+            nome: "pedro", sobrenome: "ribeirp", email: "@gmail.com", senha: "123", confirmasenha: "123", admin: false
         }]
 
         const unidade = [{
