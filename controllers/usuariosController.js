@@ -1,11 +1,15 @@
 require('dotenv').config();
 const Usuario = require('../models/usuarioModel');
-const { autentUsuario } = require('../controllers/autenticacaoController');
 const jwt = require('jsonwebtoken');
 
 //Buscando todos usuarios
 const getUsuarios = async (req, res) => {
     try {
+        console.log(req);
+        if(!req.admin){
+            return res.status(400).json({ message: "Voce não é Admin!" });
+        }
+        
         const {pagina = 1, limite = 5} = req.query;
         const totalRegistro = Usuario.countDocuments({});
 
@@ -58,7 +62,8 @@ const postUsuarios = async (req, res) => {
             sobrenome,
             email,
             senha,
-            confirmasenha
+            confirmasenha,
+            admin: false
         }
 
         const emailExiste = await Usuario.findOne({ email: email});
@@ -111,7 +116,7 @@ const deleteUsuarios = async (req, res) => {
 }
 
 //Logando no sistema
-const postLogin = async (req, res) => {
+const postLoginUser = async (req, res) => {
     try {
         const { email, senha } = req.body;
 
@@ -129,7 +134,7 @@ const postLogin = async (req, res) => {
 
         const secrete = process.env.SECRET;
         const token = jwt.sign({
-            id: usuario._id}, secrete, {expiresIn: 300
+            id: usuario._id, admin: usuario.admin}, secrete, {expiresIn: 300
         });
 
         res.status(200).json({ message: `Usuario Logado no sistema!`, token });
@@ -147,5 +152,5 @@ module.exports = {
     postUsuarios,
     putUsuarios,
     deleteUsuarios,
-    postLogin
+    postLoginUser
 }

@@ -1,7 +1,7 @@
 const express = require('express');
 const Usuario = require('../models/usuarioModel');
-const { getUsuarios, getUsuariosById, postUsuarios, putUsuarios, deleteUsuarios, postLogin } = require('../controllers/usuariosController');
-const { autentUsuario } = require('../controllers/autenticacaoController');
+const { getUsuarios, getUsuariosById, postUsuarios, putUsuarios, deleteUsuarios, postLoginUser } = require('../controllers/usuariosController');
+const { autentUsuario} = require('../controllers/autenticacaoController');
 
 const router = express.Router();
 
@@ -9,7 +9,7 @@ const router = express.Router();
 router.get('/', autentUsuario, getUsuarios);
 
 //Buscando usarios por id
-router.get('/:id', getUsuariosById);
+router.get('/:id', autentUsuario, getUsuariosById);
 
 //Inserindo usuario
 router.post('/', postUsuarios);
@@ -21,6 +21,6 @@ router.put('/:id', putUsuarios);
 router.delete('/:id', deleteUsuarios);
 
 //Logando no sistema
-router.post('/:id', postLogin);
+router.post('/login', postLoginUser);
 
 module.exports = router;

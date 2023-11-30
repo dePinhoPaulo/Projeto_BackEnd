@@ -21,6 +21,9 @@ const usuarioSchema = mongoose.Schema(
         confirmasenha: {
             type: String,
             require: [true, "Confirme a senha"]
+        },
+        admin: {
+            type: Boolean,
         }
     }
 );

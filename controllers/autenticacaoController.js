@@ -14,8 +14,14 @@ function autentUsuario (req, res, next){
     try {
         const secrete = process.env.SECRET;
 
-        jwt.verify(token, secrete);
-        next(); 
+        jwt.verify(token, secrete, (err, decoded) => {
+            if (err) return res.status(401).send({seeror: "token invalido"});
+
+            req.admin = decoded.admin;
+
+            next(); 
+        });
+        
 
     } catch (error) {
         return res.status(400).json({ message: `Token invalido!` });
