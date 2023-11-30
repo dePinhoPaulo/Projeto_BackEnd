@@ -8,14 +8,14 @@ function autentUsuario (req, res, next){
     const token = authHeader && authHeader.split(" ")[1];
 
     if (!token){
-        return res.status(401).json({ message: `Acesso negado!` });
+        return res.status(401).json({ error: `Acesso negado, logue-se na API!` });
     }
 
     try {
         const secrete = process.env.SECRET;
 
         jwt.verify(token, secrete, (err, decoded) => {
-            if (err) return res.status(401).send({seeror: "token invalido"});
+            if (err) return res.status(401).send({error: "token invalido"});
 
             req.admin = decoded.admin;
 

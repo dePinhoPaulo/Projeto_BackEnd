@@ -1,16 +1,22 @@
 const express = require('express');
 const { getColaboradores, getColaboradoresById, postColaboradores, putColaboradores, deleteColaboradores} = require('../controllers/colaboradoresController');
+const { autentUsuario} = require('../controllers/autenticacaoController');
 
 const router = express.Router();
 
-router.get('/', getColaboradores)
+//buscando todos colaboradores
+router.get('/', autentUsuario, getColaboradores)
 
-router.get('/:id', getColaboradoresById)
+//buscando colaborador por id
+router.get('/:id', autentUsuario, getColaboradoresById)
 
-router.post('/', postColaboradores)
+//inserindo colaborador
+router.post('/', autentUsuario, postColaboradores)
 
-router.put('/:id', putColaboradores)
+//atualizando colaborador
+router.put('/:id', autentUsuario, putColaboradores)
 
-router.delete('/:id', deleteColaboradores)
+//deletando colaborador
+router.delete('/:id', autentUsuario, deleteColaboradores)
 
 module.exports = router;

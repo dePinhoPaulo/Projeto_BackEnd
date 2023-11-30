@@ -1,5 +1,4 @@
 const express = require('express');
-const Usuario = require('../models/usuarioModel');
 const { getUsuarios, getUsuariosById, postUsuarios, putUsuarios, deleteUsuarios, postLoginUser, postAdmin } = require('../controllers/usuariosController');
 const { autentUsuario} = require('../controllers/autenticacaoController');
 
@@ -11,14 +10,14 @@ router.get('/', autentUsuario, getUsuarios);
 //Buscando usarios por id
 router.get('/:id', autentUsuario, getUsuariosById);
 
-//Inserindo usuario
+//Cadastrando usuario
 router.post('/', postUsuarios);
 
 //Atualizando usuario
-router.put('/:id', putUsuarios);
+router.put('/:id', autentUsuario, putUsuarios);
 
 //Deletando usuario
-router.delete('/:id', deleteUsuarios);
+router.delete('/:id', autentUsuario, deleteUsuarios);
 
 //Logando no sistema
 router.post('/login', postLoginUser);

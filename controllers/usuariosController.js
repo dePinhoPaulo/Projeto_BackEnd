@@ -27,6 +27,10 @@ const getUsuarios = async (req, res) => {
 //Buscando usuarios por Id
 const getUsuariosById = async (req, res) => {
     try {
+        if(!req.admin){
+            return res.status(400).json({ message: "Voce não é Admin!" });
+        }
+
         const { id } = req.params;
         const usuario = await Usuario.findById(id);
         res.status(200).json(usuario);
@@ -78,6 +82,10 @@ const postUsuarios = async (req, res) => {
 //Atualizando usuarios
 const putUsuarios = async (req, res) => {
     try {
+        if(!req.admin){
+            return res.status(400).json({ message: "Voce não é Admin!" });
+        }
+
         const { id } = req.params;
         const usuario = await Usuario.findByIdAndUpdate(id, req.body);
         if (!usuario) {
@@ -95,6 +103,10 @@ const putUsuarios = async (req, res) => {
 //Deletando usuarios
 const deleteUsuarios = async (req, res) => {
     try {
+        if(!req.admin){
+            return res.status(400).json({ message: "Voce não é Admin!" });
+        }
+
         const { id } = req.params
         const usuario = await Usuario.findByIdAndDelete(id);
         if (!usuario) {
@@ -144,7 +156,7 @@ const postLoginUser = async (req, res) => {
     }
 }
 
-//Iserindo usuarios
+//Iserindo Admins
 const postAdmin = async (req, res) => {
     try {
         if(!req.admin){

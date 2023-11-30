@@ -2,6 +2,10 @@ const Colaborador = require('../models/colaboradorModel');
 
 const getDepSalario = async (req, res) => {
     try {
+        if(!req.admin){
+            return res.status(400).json({ message: "Voce não é Admin!" });
+        }
+
         const relatorio = await Colaborador.aggregate([{$group : {_id:{Unidade:"$idUnidade", Departamento:"$nomeDepartamento"}, Total_Salarios:{$sum:"$salario"}}}]);
         res.status(200).json(relatorio);
 
@@ -14,6 +18,10 @@ const getDepSalario = async (req, res) => {
 
 const getDepPessoa = async (req, res) => {
     try {
+        if(!req.admin){
+            return res.status(400).json({ message: "Voce não é Admin!" });
+        }
+
         const relatorio = await Colaborador.aggregate([{$group : {_id:{Unidade:"$idUnidade", Departamento:"$nomeDepartamento"}, Total_Pessoas:{$sum:1}}}]);
         res.status(200).json(relatorio);
 
@@ -26,6 +34,10 @@ const getDepPessoa = async (req, res) => {
 
 const getDepIdade = async (req, res) => {
     try {
+        if(!req.admin){
+            return res.status(400).json({ message: "Voce não é Admin!" });
+        }
+
         const relatorio = await Colaborador.aggregate([{$group : {_id:{Unidade:"$idUnidade", Departamento:"$nomeDepartamento"}, Media_Idade:{$avg:"$idade"}}}]);
         res.status(200).json(relatorio);
 
@@ -38,6 +50,10 @@ const getDepIdade = async (req, res) => {
 
 const getUniSalario = async (req, res) => {
     try {
+        if(!req.admin){
+            return res.status(400).json({ message: "Voce não é Admin!" });
+        }
+
         const relatorio = await Colaborador.aggregate([{$group : {_id:"$idUnidade", Total_Salarios:{$sum:"$salario"}}}]);
         res.status(200).json(relatorio);
 
@@ -50,6 +66,10 @@ const getUniSalario = async (req, res) => {
 
 const getUniPessoa = async (req, res) => {
     try {
+        if(!req.admin){
+            return res.status(400).json({ message: "Voce não é Admin!" });
+        }
+
         const relatorio = await Colaborador.aggregate([{$group : {_id:{Unidade:"$idUnidade"}, Total_Pessoas:{$sum:1}}}]);
         res.status(200).json(relatorio);
 
@@ -62,6 +82,10 @@ const getUniPessoa = async (req, res) => {
 
 const getUniIdade = async (req, res) => {
     try {
+        if(!req.admin){
+            return res.status(400).json({ message: "Voce não é Admin!" });
+        }
+        
         const relatorio = await Colaborador.aggregate([{$group : {_id:{Unidade:"$idUnidade"}, Media_Idade:{$avg:"$idade"}}}]);
         res.status(200).json(relatorio);
 

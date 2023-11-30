@@ -1,21 +1,22 @@
 const express = require('express');
 const { getUnidades, getUnidadesById, postUnidades, putUnidades, deleteUnidades} = require('../controllers/unidadesController');
+const { autentUsuario} = require('../controllers/autenticacaoController');
 
 const router = express.Router();
 
 //buscando
-router.get('/', getUnidades);
+router.get('/', autentUsuario, getUnidades);
 
 //Buscando unidades por Id
-router.get('/:id', getUnidadesById);
+router.get('/:id', autentUsuario, getUnidadesById);
 
 //inserindo unidade
-router.post('/', postUnidades);
+router.post('/', autentUsuario, postUnidades);
 
 //Atualizando unidade
-router.put('/:id', putUnidades);
+router.put('/:id', autentUsuario, putUnidades);
 
 //Deletando unidades
-router.delete('/:id', deleteUnidades);
+router.delete('/:id', autentUsuario, deleteUnidades);
 
 module.exports = router;
