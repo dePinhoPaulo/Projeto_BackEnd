@@ -100,6 +100,9 @@ const deleteUsuarios = async (req, res) => {
         if (!usuario) {
             return res.status(404).json({ message: `não posso encontrar usuario com este ID: ${id}` });
         }
+        if (usuario.admin) {
+            return res.status(404).json({ message: `Usuario é um Admin e não pode ser excluido` });
+        }
         res.status(200).json({ message: `Usuario: ${id}, deletado com sucesso!` });
 
     } catch (error) {
@@ -147,7 +150,7 @@ const postAdmin = async (req, res) => {
         if(!req.admin){
             return res.status(400).json({ message: "Voce não é Admin!" });
         }
-        
+
         const { nome, sobrenome, email, senha, confirmasenha } = req.body;
 
         if (!nome) {
