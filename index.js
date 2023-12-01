@@ -8,6 +8,9 @@ const departamentoRoute = require('./routes/departamentoRoute');
 const colaboradorRoute = require('./routes/colaboradorRoute');
 const relatorioRoute = require('./routes/relatorioRoute');
 
+const swaggerUi = require('swagger-ui-express');
+const swaggerFille = require('./swagger_doc.json');
+
 const app = express();
 
 const LINK = process.env.DB_LINK
@@ -20,6 +23,9 @@ app.use(express.urlencoded({ extended: false }))
 app.get('/', (req, res) => {
   res.send("IAE, BLZ?");
 })
+
+//Documentação
+app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerFille));
 
 //Rotas
 app.use('/install', installRoute);
